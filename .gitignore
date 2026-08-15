@@ -5,9 +5,9 @@ __pycache__/
 .venv/
 venv/
 
-# Datasets (798 MB+ of frames, masks, landmarks - never in git)
-data/
-uploads/
+# Datasets - ROOT-ANCHORED so rlroinet/data/*.py stays tracked
+/data/
+/uploads/
 
 # Model weights and packaged bundles (160 MB+ / 943 MB)
 *.pt
