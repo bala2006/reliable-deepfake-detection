@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RL-ROI-Net v2 evaluation status: retained FF++ experiments for a frozen verdict backbone with a trainable forgery-mask region head, with external limits documented.">
+  <meta name="color-scheme" content="light dark">
+  <title>Evidence dashboard &middot; RL-ROI-Net</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="results">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">R</span><span>RL-ROI<span class="brand__dot">&middot;</span>NET</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Overview</a><a href="architecture.html">System</a><a href="results.html" class="active">Evidence</a><a href="demo.html">Demo lab</a><a href="research.html">Research</a>
+      </div>
+      <a class="nav-cta" href="demo.html">Open demo <span class="arrow">&nearr;</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="page-head">
+      <div class="container container--narrow">
+        <span class="eyebrow">Evidence status</span>
+        <h1>Measured on FF++.<br><span class="accent">Not a universal reliability claim.</span></h1>
+        <p class="page-head__lead">The local review service uses the configured production checkpoint and preserves an explicit REVIEW outcome. The retained headline metrics (ACC 0.6965 / AUC 0.8104 / ECE 0.2171 / region IoU 0.5576) are from 603 face samples in a report key named <code>unseen_videos</code>; that report sets <code>video_level=false</code>. Under the leakage-safe official-pair video protocol, the honest retained production AUC is 0.5592 on 142 videos. Raw Celeb-DF-v2 and DFDCP have no mask files in this extraction, so external localization is not established.</p>
+        <div class="notice notice--warning"><span class="notice__icon" aria-hidden="true">!</span><p><strong>Operational boundary.</strong> These results support review-assistant use only. They do not establish zero-error detection, reliable performance on every generator, or a substitute for human verification.</p></div>
+      </div>
+    </header>
+
+    <section class="section section--compact" id="dashboard">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Current status</span><h2>What is known—and what is not.</h2></div>
+        <div class="kpi-strip reveal">
+          <article class="card card--stat"><span class="card__label">Classification</span><span class="card__value card__value--brand">Measured</span><span class="card__note">video-level FF++ reports retained</span></article>
+          <article class="card card--stat"><span class="card__label">Decision policy</span><span class="card__value card__value--brand">REVIEW</span><span class="card__note">ambiguous clips are not forced binary</span></article>
+          <article class="card card--stat"><span class="card__label">Localization</span><span class="card__value card__value--brand">ROI</span><span class="card__note">sampled-frame evidence overlay</span></article>
+          <article class="card card--stat"><span class="card__label">External data</span><span class="card__value card__value--brand">Blocked</span><span class="card__note">raw Celeb-DF is unavailable</span></article>
+        </div>
+
+        <div class="grid grid--2 reveal">
+          <div class="table-wrap">
+            <table class="table">
+              <caption>Current evidence boundaries</caption>
+              <thead><tr><th>Category</th><th>Metric</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="method-name">FF++ held-out videos</td><td>Classification and region metrics</td><td>Measured in saved reports</td></tr>
+                <tr><td class="method-name">Review policy</td><td>Review rate and confident errors</td><td>Measured; never zero-risk</td></tr>
+                <tr><td class="method-name">Localization</td><td>Region IoU and region-hit rate</td><td>Measured on FF++ only</td></tr>
+                <tr><td class="method-name">External generalization</td><td>Different dataset / new generators</td><td>Not established</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <article class="card card--accent">
+            <span class="card__index">Use responsibly</span>
+            <h3>Evidence is not proof</h3>
+            <p>Use the local analysis screen to inspect the sampled video evidence. Preserve REVIEW outcomes for human follow-up, and do not generalize FF++ measurements to untested datasets or future generators.</p>
+            <div class="pills" style="margin-top:var(--space-5)"><span class="pill">Video-disjoint FF++</span><span class="pill">Saved report</span><span class="pill">Human review</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="protocol">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Evaluation protocol</span><h2>Compare like with like.</h2><p>Use fixed splits, identical preprocessing, and the same uniform frame schedule when comparing the detector with frame-level baselines.</p></div>
+        <div class="grid grid--3 reveal">
+          <article class="card card--hover"><span class="card__index">01</span><h3>Train in Docker</h3><p>Run the supervised detector on the RTX 4050 CUDA runtime and save the checkpoint and logs.</p></article>
+          <article class="card card--hover"><span class="card__index">02</span><h3>Evaluate localization</h3><p>Check dense forgery masks and periocular, jawline, mouth, and hairline ROI metrics.</p></article>
+          <article class="card card--hover"><span class="card__index">03</span><h3>Report measurements</h3><p>Publish classification, calibration, runtime, and cross-domain values only after they are observed.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div><a class="brand site-footer__brand" href="index.html"><span class="brand__mark" aria-hidden="true">R</span><span>RL-ROI<span class="brand__dot">&middot;</span>NET</span></a><p class="site-footer__desc">Frozen deepfake-verdict backbone with a trainable forgery-mask and ROI region head. A research prototype, 2026.</p></div>
+      <nav aria-label="Explore"><h4>Explore</h4><ul><li><a href="architecture.html">System design</a></li><li><a href="results.html">Evidence dashboard</a></li><li><a href="demo.html">Demo lab</a></li></ul></nav>
+      <nav aria-label="Method"><h4>Method</h4><ul><li><a href="research.html">Research notes</a></li><li><a href="research.html#references">References</a></li><li><a href="research.html#limits">Limitations</a></li></ul></nav>
+    </div>
+    <div class="site-footer__legal"><span>&copy; 2026 RL-ROI-Net local evidence-review tool</span><span>Use REVIEW for ambiguity; external-dataset performance is unmeasured.</span></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

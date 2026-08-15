@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Datasets (798 MB+ of frames, masks, landmarks - never in git)
+data/
+uploads/
+
+# Model weights and packaged bundles (160 MB+ / 943 MB)
+*.pt
+*.pth
+*.onnx
+*.zip
+
+# Cached features (regenerated, large)
+**/feature_cache/
+*.npz
+
+# Keep: metrics JSON, diagnostics JSON, run_config.json, source, docs, tests

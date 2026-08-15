@@ -1,0 +1,37 @@
+[
+  {
+    "schema_version": 2,
+    "source": "ffpp",
+    "n": 152,
+    "video_level": true,
+    "acc": 0.6973684210526315,
+    "auc": 0.8124134349030471,
+    "f1": 0.7628865979381443,
+    "precision": 0.6271186440677966,
+    "recall": 0.9736842105263158,
+    "eer": 0.2763157894736842,
+    "ece": 0.1373099559231808,
+    "fp_rate": 0.2894736842105263,
+    "fn_rate": 0.013157894736842105,
+    "review_rate": 0.9802631578947368,
+    "reliable_coverage": 0.019736842105263157,
+    "confident_false_positive_rate": 0.0,
+    "confident_false_negative_rate": 0.0,
+    "region_iou": 0.8103959407828775,
+    "region_hit": 1.0,
+    "per_roi_iou": {
+      "PERIOCULAR": 0.9489609236167071,
+      "JAWLINE": 0.8740551748717715,
+      "MOUTH": 0.9518494897959183,
+      "HAIRLINE": 0.6760398260353407
+    },
+    "temperature": 1.0,
+    "train_temporal_loss": 0.07444392432611574,
+    "train_frame_loss": 0.0796533253002623,
+    "train_mask_loss": 1.1027476476038331,
+    "train_region_loss": 0.676609770108806,
+    "train_loss_loss": 1.595149783329421,
+    "train_seconds": 92.91,
+    "epoch": 1
+  }
+]

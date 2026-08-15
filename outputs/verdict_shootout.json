@@ -1,0 +1,30 @@
+{
+  "winner": "honi05",
+  "target_acc": 0.95,
+  "results": [
+    {
+      "model": "honi05",
+      "n_videos": 200,
+      "n_real": 100,
+      "n_fake": 100,
+      "skipped": 0,
+      "acc": 0.945,
+      "auc": 0.9903,
+      "f1": 0.9473684210526315,
+      "eer": 0.04000000000000002,
+      "ece": 0.07934281775611453
+    },
+    {
+      "model": "deepfakebench_xception",
+      "n_videos": 200,
+      "n_real": 100,
+      "n_fake": 100,
+      "skipped": 0,
+      "acc": 0.525,
+      "auc": 0.6793,
+      "f1": 0.6779661016949152,
+      "eer": 0.37,
+      "ece": 0.1947468946874142
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local Docker demo for RL-ROI-Net v2 supervised deepfake analysis with EfficientNet-B4 classification and dense forgery-mask/ROI localization.">
+  <meta name="color-scheme" content="dark">
+  <title>Analysis lab &middot; RL-ROI-Net</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="demo" data-theme="forensic">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">R</span>
+        <span>RL-ROI<span class="brand__dot">&middot;</span>NET</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Overview</a>
+        <a href="architecture.html">System</a>
+        <a href="results.html">Evidence</a>
+        <a href="demo.html" class="active">Demo lab</a>
+        <a href="research.html">Research</a>
+      </div>
+      <a class="nav-cta" href="#upload">Analyze video <span class="arrow">&rarr;</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-head">
+      <div class="container container--narrow">
+        <span class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Local review workspace</span>
+        <h1>Review evidence.<br><span class="accent">Make the call yourself.</span></h1>
+        <p class="page-head__lead">This local service uses the configured production checkpoint to score a short clip, show sampled-frame localization evidence, and route ambiguous scores to REVIEW. It is an evidence aid—not a definitive authenticity decision.</p>
+        <div class="service-status" id="apiHealth" role="status" aria-live="polite">Checking local service…</div>
+        <ul class="lab-meta">
+          <li>Production checkpoint</li>
+          <li>30 seconds max</li>
+          <li>Local CUDA analysis</li>
+          <li>Deleteable review bundle</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section section--compact" id="upload">
+      <div class="container container--narrow">
+        <div class="upload-card reveal">
+          <div class="upload-card__head">
+            <div>
+              <span class="eyebrow">Upload</span>
+              <h2>Choose a review clip</h2>
+              <p>Use a short clip you are authorized to inspect. The local service checks size and duration, samples frames uniformly, and returns a three-way REAL / FAKE / REVIEW outcome with localization evidence.</p>
+            </div>
+            <span class="local-chip">MAX 30 SEC</span>
+          </div>
+
+          <div class="dropzone" id="dropZone" tabindex="0" role="button" aria-label="Choose a video file">
+            <input type="file" id="videoFile" accept="video/*">
+            <span class="dropzone__icon" aria-hidden="true">+</span>
+            <span class="dropzone__title" id="fileLabel">Drop a video here or browse</span>
+            <span class="dropzone__hint">Any FFmpeg-readable video format &middot; 250 MB maximum</span>
+            <div class="file-meta" id="fileMeta" hidden>
+              <span class="chip" id="fileName"></span>
+              <span class="chip" id="fileDuration"></span>
+            </div>
+          </div>
+
+          <div class="upload-actions">
+            <p class="caption">Files stay on this local server only for review and are automatically cleaned up after 24 hours. You can delete the generated review bundle immediately after inspection.</p>
+            <div class="upload-actions__buttons">
+              <button class="btn btn--secondary" id="refreshService" type="button">Refresh service</button>
+              <button class="btn btn--secondary" id="cancelAnalysis" type="button" hidden>Cancel</button>
+              <button class="btn btn--primary" id="runLive" type="button" disabled>
+                <span id="runLiveLabel">Analyze securely</span>
+                <span class="arrow">&rarr;</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="status-line" aria-live="polite">
+            <span class="status-dot" id="processingDot" aria-hidden="true"></span>
+            <span id="liveStatus">Choose a video to continue.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="results" hidden>
+      <div class="container container--narrow">
+        <div class="result-card reveal">
+          <div class="result-card__head" style="display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-4);margin-bottom:var(--space-5);flex-wrap:wrap">
+            <div>
+              <span class="eyebrow">Analysis result</span>
+              <h2 style="margin-bottom:var(--space-1)">Verdict &amp; evidence</h2>
+              <p class="live-result-note" id="liveResultNote" style="font-size:var(--text-sm);color:var(--text-2)"></p>
+              <p class="result-meta" id="liveResultMeta"></p>
+            </div>
+            <div class="result-actions">
+              <button class="btn btn--secondary btn--sm" id="downloadReport" type="button">Download report</button>
+              <button class="btn btn--secondary btn--sm" id="deleteBundle" type="button" disabled>Delete local bundle</button>
+              <button class="btn btn--secondary btn--sm" id="analyzeAnother" type="button">Analyze another</button>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <article class="verdict-card" id="liveVerdictCard">
+              <div class="verdict-card__top">
+                <span class="label">Manipulated?</span>
+                <span class="verdict-card__chip" id="resultStatusChip">MODEL OUTPUT</span>
+              </div>
+              <div class="verdict-card__answer">
+                <div>
+                  <span class="question">Assessment</span>
+                  <h3 id="liveVerdictAnswer">&mdash;</h3>
+                  <p class="explanation" id="liveVerdictExplanation">Awaiting analysis</p>
+                </div>
+                <span class="value" id="liveVerdictValue">&mdash;</span>
+              </div>
+              <div class="confidence-bar" role="progressbar" aria-label="Manipulation confidence" aria-valuemin="0" aria-valuemax="100">
+                <span><i id="liveConfidenceFill"></i></span>
+              </div>
+              <div class="confidence-label">
+                <span>Manipulation confidence</span>
+                <strong id="liveConfidenceCaption">&mdash;</strong>
+              </div>
+            </article>
+
+            <div class="stats-card">
+              <div class="stats-card__grid">
+                <div class="stats-card__item">
+                  <span class="label">Flagged frames</span>
+                  <div class="value" id="evidenceCount">&mdash;</div>
+                  <div class="note">with highlighted regions</div>
+                </div>
+                <div class="stats-card__item">
+                  <span class="label">Inspections</span>
+                  <div class="value" id="liveGlimpses">&mdash;</div>
+                  <div class="note">uniformly sampled frames</div>
+                </div>
+                <div class="stats-card__item">
+                  <span class="label">Decision policy</span>
+                  <div class="value" id="livePolicy">&mdash;</div>
+                  <div class="note">robust video aggregation</div>
+                </div>
+                <div class="stats-card__item">
+                  <span class="label">Clip length</span>
+                  <div class="value" id="liveDuration">&mdash;</div>
+                  <div class="note" id="liveFilename">uploaded video</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="evidence-section" hidden>
+      <div class="container container--narrow">
+        <div class="evidence reveal">
+          <div class="evidence__panel">
+            <div class="evidence__panel-head">
+              <span class="label">Video overlay</span>
+              <span class="hint" id="overlayHint">Seek the trace or click a marker</span>
+            </div>
+            <div class="video-wrap">
+              <video id="liveVideo" controls playsinline></video>
+              <canvas id="liveOverlay"></canvas>
+              <div class="video-frame-badge" id="videoFrameBadge" hidden></div>
+            </div>
+            <div class="trace-timeline" id="inspectionTimeline" aria-label="Inspection timeline" hidden></div>
+            <div class="roi-legend" id="roiLegend" hidden></div>
+          </div>
+
+          <div class="evidence__panel">
+            <div class="evidence__panel-head">
+              <span class="label">Inspection trace</span>
+              <span class="hint" id="evidenceCountLabel">&mdash;</span>
+            </div>
+            <div class="trace-filter" id="traceFilter" hidden>
+              <button type="button" class="trace-filter__btn is-active" data-filter="all">All</button>
+              <button type="button" class="trace-filter__btn" data-filter="flagged">Flagged</button>
+            </div>
+            <div class="frame-grid" id="detectedGrid" aria-live="polite"></div>
+            <p class="caption" id="liveEmptyNote" style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--text-3)"></p>
+          </div>
+        </div>
+
+        <div class="notice notice--warning reveal" style="margin-top:var(--space-4);max-width:none">
+          <span class="notice__icon" aria-hidden="true">i</span>
+          <p><strong>Human review required.</strong> Highlighted boxes are model-localization evidence for sampled frames, not proof of manipulation or pixel-perfect ground truth. A REVIEW outcome is deliberately inconclusive; do not use any output as the sole basis for moderation, legal, or safety decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact">
+      <div class="container container--narrow">
+        <div class="steps reveal">
+          <div class="step">
+            <span class="step__num">1</span>
+            <div>
+              <h3>Upload</h3>
+              <p>Any format FFmpeg can decode can be submitted; the server checks duration and size.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__num">2</span>
+            <div>
+              <h3>Analyze</h3>
+              <p>The service applies the configured fixed uniform frame schedule, then returns classification and dense mask/ROI outputs for those sampled frames.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__num">3</span>
+            <div>
+              <h3>Review</h3>
+              <p>Inspect the verdict, confidence, annotated frames, and video overlay in one place.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <a class="brand site-footer__brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">R</span>
+          <span>RL-ROI<span class="brand__dot">&middot;</span>NET</span>
+        </a>
+        <p class="site-footer__desc">Supervised EfficientNet-B4 deepfake classification with dense forgery-mask and ROI localization. A research prototype, 2026.</p>
+      </div>
+      <nav aria-label="Explore">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="architecture.html">System design</a></li>
+          <li><a href="results.html">Evidence dashboard</a></li>
+          <li><a href="demo.html">Demo lab</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Method">
+        <h4>Method</h4>
+        <ul>
+          <li><a href="research.html">Research notes</a></li>
+          <li><a href="research.html#references">References</a></li>
+          <li><a href="research.html#limits">Limitations</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <span>&copy; 2026 RL-ROI-Net local evidence-review tool</span>
+      <span>Use the REVIEW outcome and human judgment for ambiguous clips.</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged detected frame">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous frame">&larr;</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next frame">&rarr;</button>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+INFO loading frozen verdict model 'honi05' on cuda
+INFO initialized region heads from /app/outputs/checkpoints/best.pt (epoch 16)
+WARNING DFDCP record has no extracted frames: method_A/1262961/1262961_C/1609928_1262961_C_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1262961/1262961_C/2059066_1262961_C_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1441897/1441897_A/1848521_1441897_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1441897/1441897_A/2040724_1441897_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1795659/1795659_D/1916010_1795659_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_A/1390015_1848521_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_A/2040724_1848521_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/1390015_1848521_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/1390015_1848521_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/1441897_1848521_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/1441897_1848521_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/1573558_1848521_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1848521/1848521_B/2040724_1848521_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1290777_1851350_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1290777_1851350_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1290777_1851350_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1320815_1851350_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1320815_1851350_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1320815_1851350_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1390015_1851350_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1390015_1851350_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/1390015_1851350_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/2040724_1851350_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/2040724_1851350_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1851350/1851350_A/2040724_1851350_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1371757_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1371757_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1409297_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1409297_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1409297_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1997643_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1997643_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/1997643_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2050389_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2050389_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2050389_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2059066_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2059066_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2059066_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2063898_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2063898_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/2063898_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/804259_1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/804259_1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/1853436/1853436_D/804259_1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1929178/1929178_H/1822940_1929178_H_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1929178/1929178_J/1822940_1929178_J_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1929178/1929178_J/1999299_1929178_J_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1260311_1976794_A_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1260311_1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1294671_1976794_A_001.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1294671_1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1569101_1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/1916010_1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/1976794/1976794_A/700790_1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_A/1826349_2005778_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_A/2084869_2005778_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_A/2090100_2005778_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_B/1782722_2005778_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_C/1826349_2005778_C_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_C/2084869_2005778_C_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_C/2090100_2005778_C_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_C/643049_2005778_C_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_D/1826349_2005778_D_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2005778/2005778_D/2090100_2005778_D_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1188957_2022094_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1188957_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1188957_2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1354471_2022094_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1354471_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1599584_2022094_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1599584_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1599584_2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1782722_2022094_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1782722_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1782722_2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1828891_2022094_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1828891_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/1828891_2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/2084869_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/2090100_2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/2022094/2022094_A/2090100_2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/1782722_643049_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/1782722_643049_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/1782722_643049_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2005778_643049_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2005778_643049_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2005778_643049_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2084869_643049_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2084869_643049_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2084869_643049_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2090100_643049_A_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2090100_643049_A_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_A/2090100_643049_A_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/1782722_643049_B_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/1782722_643049_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/1782722_643049_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2005778_643049_B_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2005778_643049_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2005778_643049_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2084869_643049_B_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2084869_643049_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2084869_643049_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2090100_643049_B_000.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2090100_643049_B_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_B/2090100_643049_B_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_C/1782722_643049_C_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_C/1782722_643049_C_003.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_C/2005778_643049_C_002.mp4
+WARNING DFDCP record has no extracted frames: method_A/643049/643049_C/2090100_643049_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1059855/1059855_G_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1059855/1059855_G_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1061402/1061402_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1061402/1061402_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1152039/1152039_B_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1152039/1152039_B_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1152039/1152039_E_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1152039/1152039_E_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_G_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_G_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_H_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_I_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_I_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1260311/1260311_I_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1262961/1262961_F_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_C_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1371757/1371757_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1433884/1433884_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1433884/1433884_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_B_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_B_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_B_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_C_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1782722/1782722_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1822940/1822940_G_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1848521/1848521_B_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1848521/1848521_E_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1848521/1848521_E_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1851350/1851350_A_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1851350/1851350_A_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1851350/1851350_A_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1851350/1851350_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1853436/1853436_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1853436/1853436_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1853436/1853436_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1916010/1916010_I_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1976794/1976794_A_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1976794/1976794_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1976794/1976794_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1976794/1976794_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1997643/1997643_H_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1997643/1997643_H_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/1997643/1997643_H_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_A_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_F_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_G_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_H_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_J_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_K_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_K_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2005778/2005778_L_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2022094/2022094_A_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2022094/2022094_A_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2050389/2050389_E_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2090100/2090100_C_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2090100/2090100_C_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2090100/2090100_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2090100/2090100_D_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/2090100/2090100_D_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_A_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_A_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_A_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_B_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_B_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_B_003.mp4
+WARNING DFDCP record has no extracted frames: original_videos/643049/643049_D_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/748594/748594_H_001.mp4
+WARNING DFDCP record has no extracted frames: original_videos/748594/748594_H_002.mp4
+WARNING DFDCP record has no extracted frames: original_videos/748594/748594_H_003.mp4
+INFO indexed DFDCP: train=1200 val=240 test=600 source_groups=364 dropped_cross_partition=192; localization masks are synthetic fallbacks
+INFO region-head training: verdict=honi05 feat=1792 cls=True train=1200 val=240 test=600 device=cuda
+INFO epoch 1/1 [2/38] 5% cls=0.8698 mask=4.5182 region=0.4642 loss=5.6200 | 3.7s elapsed ETA 66.0s
+INFO epoch 1/1 [4/38] 10% cls=0.8047 mask=3.9457 region=0.4019 loss=4.9514 | 6.2s elapsed ETA 52.8s
+INFO epoch 1/1 [6/38] 15% cls=0.7163 mask=3.6872 region=0.3683 loss=4.5877 | 8.7s elapsed ETA 46.4s
+INFO epoch 1/1 [8/38] 21% cls=0.6873 mask=3.8636 region=0.3822 loss=4.7420 | 11.0s elapsed ETA 41.4s
+INFO epoch 1/1 [10/38] 26% cls=0.6118 mask=3.7215 region=0.3617 loss=4.5141 | 13.4s elapsed ETA 37.5s
+INFO epoch 1/1 [12/38] 31% cls=0.5414 mask=3.7215 region=0.3570 loss=4.4414 | 15.9s elapsed ETA 34.4s
+INFO epoch 1/1 [14/38] 36% cls=0.4946 mask=3.7341 region=0.3529 loss=4.4052 | 18.4s elapsed ETA 31.5s
+INFO epoch 1/1 [16/38] 42% cls=0.4616 mask=3.6104 region=0.3363 loss=4.2402 | 20.8s elapsed ETA 28.6s
+INFO epoch 1/1 [18/38] 47% cls=0.4391 mask=3.4931 region=0.3236 loss=4.0940 | 23.4s elapsed ETA 26.0s
+INFO epoch 1/1 [20/38] 52% cls=0.4292 mask=3.3667 region=0.3130 loss=3.9523 | 26.2s elapsed ETA 23.6s
+INFO epoch 1/1 [22/38] 57% cls=0.4099 mask=3.2400 region=0.3044 loss=3.8021 | 29.0s elapsed ETA 21.1s
+INFO epoch 1/1 [24/38] 63% cls=0.3874 mask=3.1149 region=0.2969 loss=3.6507 | 31.7s elapsed ETA 18.5s
+INFO epoch 1/1 [26/38] 68% cls=0.3697 mask=2.9941 region=0.2904 loss=3.5091 | 34.2s elapsed ETA 15.8s
+INFO epoch 1/1 [28/38] 73% cls=0.3515 mask=2.8788 region=0.2841 loss=3.3723 | 36.7s elapsed ETA 13.1s
+INFO epoch 1/1 [30/38] 78% cls=0.3362 mask=2.7781 region=0.2791 loss=3.2539 | 39.3s elapsed ETA 10.5s
+INFO epoch 1/1 [32/38] 84% cls=0.3245 mask=2.6834 region=0.2743 loss=3.1451 | 42.0s elapsed ETA 7.9s
+INFO epoch 1/1 [34/38] 89% cls=0.3109 mask=2.5955 region=0.2698 loss=3.0413 | 44.6s elapsed ETA 5.2s
+INFO epoch 1/1 [36/38] 94% cls=0.2983 mask=2.5128 region=0.2652 loss=2.9437 | 47.2s elapsed ETA 2.6s
+INFO epoch 1/1 [38/38] 100% cls=0.2934 mask=2.4574 region=0.2625 loss=2.8821 | 49.3s elapsed ETA 0.0s
+INFO epoch 01/1 train cls=0.2934 mask=2.4574 region=0.2625 | val ACC=0.5833 faceAUC=0.8286 validation_auc=0.8286 regionIoU=0.4565 regionHit=1.0000
+INFO region-head training complete (held-out test): {
+  "schema_version": 2,
+  "source": "dfdcp",
+  "n": 600,
+  "acc": 0.6116666666666667,
+  "auc": 0.6930999999999999,
+  "f1": 0.6812585499316005,
+  "precision": 0.5777262180974478,
+  "recall": 0.83,
+  "eer": 0.3466666666666667,
+  "ece": 0.20132161458333336,
+  "fp_rate": 0.30333333333333334,
+  "fn_rate": 0.085,
+  "video_level": false,
+  "review_rate": 0.32,
+  "reliable_coverage": 0.68,
+  "reliable_precision": 0.6542056074766355,
+  "reliable_recall": 0.7,
+  "confident_false_positive_rate": 0.37,
+  "confident_false_negative_rate": 0.09666666666666666,
+  "region_iou": 0.14706611533648073,
+  "region_hit": 0.7966666666666666,
+  "per_roi_iou": {
+    "PERIOCULAR": 0.3621360520506564,
+    "JAWLINE": 0.1330971128608924,
+    "MOUTH": 0.2623265306122449,
+    "HAIRLINE": 0.32864455849453883
+  },
+  "epoch": 1,
+  "selected_by": "validation_auc",
+  "validation_best_metric": "auc",
+  "validation_best_score": 0.8286458333333333,
+  "train_cls_loss": 0.2933937210838,
+  "train_mask_loss": 2.45738481203715,
+  "train_region_loss": 0.26254538893699647,
+  "train_loss": 2.882051207224528
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "source": "ffpp",
+  "n": 626,
+  "acc": 0.7332268370607029,
+  "auc": 0.8358583278849296,
+  "f1": 0.7677329624478443,
+  "precision": 0.6952141057934509,
+  "recall": 0.8571428571428571,
+  "eer": 0.24118380189604446,
+  "ece": 0.09247342923197885,
+  "fp_rate": 0.19329073482428116,
+  "fn_rate": 0.07348242811501597,
+  "video_level": false,
+  "review_rate": 0.5623003194888179,
+  "reliable_coverage": 0.43769968051118213,
+  "reliable_precision": 0.844311377245509,
+  "reliable_recall": 0.43788819875776397,
+  "confident_false_positive_rate": 0.08552631578947369,
+  "confident_false_negative_rate": 0.009316770186335404,
+  "region_iou": 0.6816259663736907,
+  "region_hit": 0.9906832298136646,
+  "per_roi_iou": {
+    "PERIOCULAR": 0.8082266453175257,
+    "JAWLINE": 0.7754042070168474,
+    "MOUTH": 0.8123964819920662,
+    "HAIRLINE": 0.2847584147790729
+  }
+}

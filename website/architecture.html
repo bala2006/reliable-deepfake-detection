@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RL-ROI-Net v2 system design: EfficientNet-B4 supervised classification with dense forgery-mask and per-ROI localization using fixed uniform frame sampling.">
+  <meta name="color-scheme" content="light dark">
+  <title>System design &middot; RL-ROI-Net</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="architecture">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">R</span>
+        <span>RL-ROI<span class="brand__dot">&middot;</span>NET</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Overview</a>
+        <a href="architecture.html" class="active">System</a>
+        <a href="results.html">Evidence</a>
+        <a href="demo.html">Demo lab</a>
+        <a href="research.html">Research</a>
+      </div>
+      <a class="nav-cta" href="demo.html">Open demo <span class="arrow">&nearr;</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-head">
+      <div class="container container--narrow">
+        <span class="eyebrow">System design</span>
+        <h1>One supervised pass.<br><span class="accent">Two complementary outputs.</span></h1>
+        <p class="page-head__lead">RL-ROI-Net v2 samples a fixed number of frames uniformly, runs aligned face crops through an EfficientNet-B4 path, and reports both a real/fake classification and fixed-ROI forgery-localization evidence.</p>
+        <div class="notice notice--info">
+          <span class="notice__icon" aria-hidden="true">i</span>
+          <p><strong>Implementation status.</strong> The system has measured FF++ experiments and supports local video review. External-dataset generalization remains unmeasured, so the displayed evidence must not be treated as a definitive authenticity verdict.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="flow">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">End-to-end flow</span>
+          <h2>From video input to an evidence report.</h2>
+        </div>
+
+        <div class="flow reveal" role="img" aria-label="Data flow: video input, uniform sampler, EfficientNet-B4, classification and mask heads">
+          <div class="flow__node">
+            <small>Input</small>
+            <strong>Video clip</strong>
+            <span>frames + time index</span>
+          </div>
+          <span class="flow__arrow" aria-hidden="true">&rarr;</span>
+          <div class="flow__node">
+            <small>Sampling</small>
+            <strong>Uniform schedule</strong>
+            <span>fixed frame count</span>
+          </div>
+          <span class="flow__arrow" aria-hidden="true">&rarr;</span>
+          <div class="flow__node flow__node--primary">
+            <small>Features</small>
+            <strong>EfficientNet-B4</strong>
+            <span>aligned face crop</span>
+          </div>
+          <span class="flow__arrow" aria-hidden="true">&rarr;</span>
+          <div class="flow__node">
+            <small>Predict</small>
+            <strong>Two heads</strong>
+            <span>class + dense mask</span>
+          </div>
+          <span class="flow__arrow" aria-hidden="true">&rarr;</span>
+          <div class="flow__node flow__node--primary">
+            <small>Report</small>
+            <strong>Verdict + ROIs</strong>
+            <span>mask and trace</span>
+          </div>
+        </div>
+
+        <div class="flow__note reveal">
+          <span>fixed frame schedule</span>
+          <span>supervised feature map</span>
+          <span>classification + localization</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="actions">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Model outputs</span>
+          <h2>Two heads, one supervised feature extractor.</h2>
+          <p>Every uniformly sampled face crop follows the same path; there is no learned selection or stopping decision.</p>
+        </div>
+
+        <div class="grid grid--4 reveal">
+          <article class="card card--hover">
+            <span class="card__index">M1</span>
+            <h3>Two backbone paths</h3>
+            <p>The deployed path uses frozen `honi05`; the alternate `train.py` path without `--verdict` uses ImageNet EfficientNet-B4 with its configured frozen blocks.</p>
+          </article>
+          <article class="card card--hover">
+            <span class="card__index">M2</span>
+            <h3>Focal classifier</h3>
+            <p>Produces a binary real/manipulated logit and is trained with Focal loss.</p>
+          </article>
+          <article class="card card--hover">
+            <span class="card__index">M3</span>
+            <h3>Dense mask head</h3>
+            <p>Decodes a per-pixel forgery map supervised with Dice and BCE losses.</p>
+          </article>
+          <article class="card card--hover">
+            <span class="card__index">M4</span>
+            <h3>Fixed-ROI localization</h3>
+            <p>Reports review evidence for periocular, jawline, mouth, and hairline landmark boxes; it is not causal attribution.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="loss">
+      <div class="container">
+        <div class="grid grid--2">
+          <div class="reveal">
+            <div class="section-head">
+              <span class="eyebrow">Supervised learning signal</span>
+              <h2>Classify the frame.<br>Localize review evidence.</h2>
+              <p>The two heads are trained together against the frame label and available FF++ forgery mask. The fixed ROI boxes do not establish causal attribution.</p>
+            </div>
+            <figure class="figure">
+              <div class="equation" role="presentation">L = w<sub>cls</sub> Focal + w<sub>dice</sub> Dice + w<sub>bce</sub> BCE</div>
+              <figcaption><strong>Figure 1.</strong> Joint supervised objective for classification and dense localization.</figcaption>
+            </figure>
+          </div>
+
+          <div class="grid reveal">
+            <article class="card card--surface-2">
+              <h3>Focal classification</h3>
+              <p>Handles the binary real/manipulated frame label.</p>
+            </article>
+            <article class="card card--surface-2">
+              <h3>Dice mask loss</h3>
+              <p>Encourages overlap between predicted and ground-truth forgery masks.</p>
+            </article>
+            <article class="card card--surface-2">
+              <h3>BCE mask loss</h3>
+              <p>Provides per-pixel supervision for the dense forgery map.</p>
+            </article>
+            <article class="card card--surface-2">
+              <h3>Fixed sampling</h3>
+              <p>Uniform frame selection keeps inputs deterministic and comparable.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="training">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Training approach</span>
+          <h2>Train and evaluate in Docker.</h2>
+        </div>
+
+        <div class="phase reveal">
+          <article class="phase__card">
+            <span class="phase__tag">Step 01</span>
+            <h3>Prepare masks</h3>
+            <p>FF++ supplies masks for its 5,200 fake records. Celeb-DF-v2 and DFDCP have no mask files in this extraction, so external evaluation is classification-only.</p>
+          </article>
+          <article class="phase__card">
+            <span class="phase__tag">Step 02</span>
+            <h3>Run supervised training</h3>
+            <p>The deployed `--verdict honi05` path trains the heads over a frozen verdict backbone; the alternate path without `--verdict` uses the configured ImageNet EfficientNet-B4 freeze setting. Both use Focal, Dice, and BCE losses with fixed uniform sampling.</p>
+          </article>
+          <aside class="phase__aside">
+            <span class="eyebrow">Runtime note</span>
+            <p>Use Docker Compose with the NVIDIA-enabled CUDA runtime on an RTX 4050. Evaluate only on documented video-disjoint splits, retain ambiguous clips as REVIEW, and do not claim broad production reliability without external validation.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <a class="brand site-footer__brand" href="index.html">
+          <span class="brand__mark" aria-hidden="true">R</span>
+          <span>RL-ROI<span class="brand__dot">&middot;</span>NET</span>
+        </a>
+        <p class="site-footer__desc">Supervised EfficientNet-B4 deepfake classification with dense forgery-mask and ROI localization. A research prototype, 2026.</p>
+      </div>
+      <nav aria-label="Explore">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="architecture.html">System design</a></li>
+          <li><a href="results.html">Evidence dashboard</a></li>
+          <li><a href="demo.html">Demo lab</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Method">
+        <h4>Method</h4>
+        <ul>
+          <li><a href="research.html">Research notes</a></li>
+          <li><a href="research.html#references">References</a></li>
+          <li><a href="research.html#limits">Limitations</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <span>&copy; 2026 RL-ROI-Net research prototype</span>
+      <span>Local evidence review with explicit human REVIEW handling.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "source": "ffpp",
+  "n": 142,
+  "acc": 0.6408450704225352,
+  "auc": 0.627323628219485,
+  "f1": 0.7384615384615385,
+  "precision": 0.72,
+  "recall": 0.7578947368421053,
+  "eer": 0.3755879059350504,
+  "ece": 0.09389275564274314,
+  "fp_rate": 0.19718309859154928,
+  "fn_rate": 0.1619718309859155,
+  "video_level": true,
+  "review_rate": 0.7816901408450704,
+  "reliable_coverage": 0.21830985915492956,
+  "reliable_precision": 0.92,
+  "reliable_recall": 0.24210526315789474,
+  "confident_false_positive_rate": 0.0425531914893617,
+  "confident_false_negative_rate": 0.05263157894736842,
+  "region_iou": 0.6712131423617017,
+  "region_hit": 0.9431216931216931,
+  "per_roi_iou": {
+    "PERIOCULAR": 0.7702465100664766,
+    "JAWLINE": 0.7291988121705892,
+    "MOUTH": 0.7571426738682493,
+    "HAIRLINE": 0.4352516777741248
+  },
+  "epoch": 5,
+  "selected_by": "validation_video_auc",
+  "validation_best_auc": 0.7106605800214824,
+  "train_contract": {
+    "methods": [
+      "Deepfakes",
+      "Face2Face",
+      "FaceSwap",
+      "NeuralTextures"
+    ],
+    "manifest_frames_per_video": 8,
+    "sample_train": 2400,
+    "sample_val": 600,
+    "sample_test": 600,
+    "adapter_bottleneck": 64
+  }
+}

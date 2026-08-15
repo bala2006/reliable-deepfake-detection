@@ -1,0 +1,85 @@
+{
+  "checkpoint": "outputs/experiments/spatial_adapter_holdout_faceswap_5epoch/best.pt",
+  "format": "adapter-region-v1",
+  "verdict": "honi05",
+  "classifier_trained": true,
+  "trained_methods": [
+    "Deepfakes",
+    "Face2Face",
+    "NeuralTextures"
+  ],
+  "eval_methods": [
+    "FaceSwap"
+  ],
+  "decision_policy": {
+    "aggregation": "robust",
+    "real_threshold": 0.3,
+    "fake_threshold": 0.7,
+    "review_enabled": true,
+    "min_fake_fraction": 0.1
+  },
+  "unseen_videos": {
+    "schema_version": 2,
+    "source": "ffpp",
+    "n": 151,
+    "acc": 0.7152317880794702,
+    "auc": 0.7814035087719298,
+    "f1": 0.7034482758620689,
+    "precision": 0.7285714285714285,
+    "recall": 0.68,
+    "eer": 0.3046491228070175,
+    "ece": 0.10927331684440969,
+    "fp_rate": 0.12582781456953643,
+    "fn_rate": 0.15894039735099338,
+    "video_level": true,
+    "review_rate": 0.8145695364238411,
+    "reliable_coverage": 0.18543046357615894,
+    "reliable_precision": 0.6,
+    "reliable_recall": 0.04,
+    "confident_false_positive_rate": 0.02631578947368421,
+    "confident_false_negative_rate": 0.0,
+    "region_iou": 0.4948167783187574,
+    "region_hit": 0.9116666666666666,
+    "per_roi_iou": {
+      "PERIOCULAR": 0.682588050058437,
+      "JAWLINE": 0.5365962754960365,
+      "MOUTH": 0.4528091611066941,
+      "HAIRLINE": 0.47387537248817313
+    },
+    "level": "unseen_videos"
+  },
+  "per_method": {
+    "FaceSwap": {
+      "schema_version": 2,
+      "source": "ffpp",
+      "n": 151,
+      "acc": 0.7152317880794702,
+      "auc": 0.7814035087719298,
+      "f1": 0.7034482758620689,
+      "precision": 0.7285714285714285,
+      "recall": 0.68,
+      "eer": 0.3046491228070175,
+      "ece": 0.10927331684440969,
+      "fp_rate": 0.12582781456953643,
+      "fn_rate": 0.15894039735099338,
+      "video_level": true,
+      "review_rate": 0.8145695364238411,
+      "reliable_coverage": 0.18543046357615894,
+      "reliable_precision": 0.6,
+      "reliable_recall": 0.04,
+      "confident_false_positive_rate": 0.02631578947368421,
+      "confident_false_negative_rate": 0.0,
+      "region_iou": 0.4948167783187574,
+      "region_hit": 0.9116666666666666,
+      "per_roi_iou": {
+        "PERIOCULAR": 0.682588050058437,
+        "JAWLINE": 0.5365962754960365,
+        "MOUTH": 0.4528091611066941,
+        "HAIRLINE": 0.47387537248817313
+      },
+      "method": "FaceSwap"
+    }
+  },
+  "cross_dataset": null,
+  "cross_dataset_status": "not run: raw Celeb-DF not found at data/celebdf"
+}

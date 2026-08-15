@@ -1,0 +1,130 @@
+{
+  "checkpoint": "outputs/checkpoints/best.pt",
+  "format": "region-head-v2",
+  "verdict": "honi05",
+  "classifier_trained": true,
+  "trained_methods": [
+    "Deepfakes",
+    "Face2Face",
+    "FaceSwap",
+    "NeuralTextures"
+  ],
+  "eval_methods": null,
+  "unseen_videos": {
+    "schema_version": 2,
+    "source": "ffpp",
+    "n": 603,
+    "acc": 0.6965174129353234,
+    "auc": 0.8104442146487426,
+    "f1": 0.660482374768089,
+    "precision": 0.7478991596638656,
+    "recall": 0.5913621262458472,
+    "eer": 0.3084585597676619,
+    "ece": 0.21709239364263427,
+    "fp_rate": 0.09950248756218906,
+    "fn_rate": 0.20398009950248755,
+    "region_iou": 0.5576403956840001,
+    "region_hit": 0.7408637873754153,
+    "per_roi_iou": {
+      "PERIOCULAR": 0.5936077815293174,
+      "JAWLINE": 0.5925394844491814,
+      "MOUTH": 0.6444409918456147,
+      "HAIRLINE": 0.4792129736300273
+    },
+    "level": "unseen_videos"
+  },
+  "per_method": {
+    "Deepfakes": {
+      "schema_version": 2,
+      "source": "ffpp",
+      "n": 212,
+      "acc": 0.5943396226415094,
+      "auc": 0.5832453547297297,
+      "f1": 0.44155844155844154,
+      "precision": 0.37777777777777777,
+      "recall": 0.53125,
+      "eer": 0.4326435810810811,
+      "ece": 0.36674739729683353,
+      "fp_rate": 0.2641509433962264,
+      "fn_rate": 0.14150943396226415,
+      "region_iou": 0.41047778182913247,
+      "region_hit": 0.578125,
+      "per_roi_iou": {
+        "PERIOCULAR": 0.4851494354978938,
+        "JAWLINE": 0.4653364509863066,
+        "MOUTH": 0.53125,
+        "HAIRLINE": 0.11552116331400619
+      },
+      "method": "Deepfakes"
+    },
+    "Face2Face": {
+      "schema_version": 2,
+      "source": "ffpp",
+      "n": 212,
+      "acc": 0.7358490566037735,
+      "auc": 0.9513302364864866,
+      "f1": 0.6956521739130435,
+      "precision": 0.5333333333333333,
+      "recall": 1.0,
+      "eer": 0.15244932432432434,
+      "ece": 0.2945104724956008,
+      "fp_rate": 0.2641509433962264,
+      "fn_rate": 0.0,
+      "region_iou": 0.9198252191874761,
+      "region_hit": 1.0,
+      "per_roi_iou": {
+        "PERIOCULAR": 0.9942948551518015,
+        "JAWLINE": 0.9459280403034498,
+        "MOUTH": 0.9946109693877552,
+        "HAIRLINE": 0.9429279595306315
+      },
+      "method": "Face2Face"
+    },
+    "FaceSwap": {
+      "schema_version": 2,
+      "source": "ffpp",
+      "n": 244,
+      "acc": 0.38934426229508196,
+      "auc": 0.28300957207207206,
+      "f1": 0.03870967741935484,
+      "precision": 0.05084745762711865,
+      "recall": 0.03125,
+      "eer": 0.6266891891891893,
+      "ece": 0.4500790580374296,
+      "fp_rate": 0.22950819672131148,
+      "fn_rate": 0.38114754098360654,
+      "region_iou": 0.11060346528145341,
+      "region_hit": 0.46875,
+      "per_roi_iou": {
+        "PERIOCULAR": 0.07578171356941565,
+        "JAWLINE": 0.14906839771409305,
+        "MOUTH": 0.2012670469241006,
+        "HAIRLINE": 0.04652227808910995
+      },
+      "method": "FaceSwap"
+    },
+    "NeuralTextures": {
+      "schema_version": 2,
+      "source": "ffpp",
+      "n": 225,
+      "acc": 0.7511111111111111,
+      "auc": 0.9272113022113022,
+      "f1": 0.7333333333333333,
+      "precision": 0.5789473684210527,
+      "recall": 1.0,
+      "eer": 0.16549666549666547,
+      "ece": 0.27314752366807726,
+      "fp_rate": 0.24888888888888888,
+      "fn_rate": 0.0,
+      "region_iou": 0.9362653814130075,
+      "region_hit": 1.0,
+      "per_roi_iou": {
+        "PERIOCULAR": 0.9963177030659757,
+        "JAWLINE": 0.9574401454039776,
+        "MOUTH": 1.0,
+        "HAIRLINE": 0.9355353571951539
+      },
+      "method": "NeuralTextures"
+    }
+  }
+}
