@@ -8,8 +8,10 @@
 |---|---|
 | Record | i1 |
 | Architecture | Stable-RouteNet v4 |
+| Architecture file | `architecture/i1-Stable-RouteNet-v4.md` |
 | Notebook | `notebook/i1-Stable-RouteNet-v4.ipynb` |
-| Data / configuration | Architecture summary in `architecture/i1-Stable-RouteNet-v4.md`; run-specific split not provided |
+| Reference document | `docs/i1-Stable-RouteNet-v4.docx` |
+| Data / configuration | Run-specific split not provided |
 | Training date | Not provided |
 | Epochs / steps | 5 / 900 |
 | Stages | 1 → 2 → 3 → 4 → 5 |

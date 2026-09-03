@@ -17,7 +17,21 @@ iN-Architecture-Name-vVersion-Fail.md
 - Use hyphens in architecture names and keep the architecture version.
 - `Pass` or `Fail` is the overall result for the primary goal, not one successful component.
 
-## 2. Required record order
+## 2. Shared iteration identity
+
+For each iteration, use the same `iN-Architecture-Name-vVersion` stem across all artifact folders:
+
+```text
+architecture/iN-Architecture-Name-vVersion.md
+notebook/iN-Architecture-Name-vVersion.ipynb
+docs/iN-Architecture-Name-vVersion.docx
+record/iN-Architecture-Name-vVersion-Pass.md
+record/iN-Architecture-Name-vVersion-Fail.md
+```
+
+The architecture, notebook, document, and result record must refer to the same `iN`. Do not reuse an iteration number or mix artifacts from different iterations.
+
+## 3. Required record order
 
 Keep the main body compact and use this order:
 

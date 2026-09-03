@@ -1,41 +1,63 @@
-# Stable-RouteNet — v3.1 Architecture (Kaggle 2xT4)
+# Reliable Deepfake Detection
 
 Evidence-stability-conditioned sparse expert routing for generalizable deepfake detection.
-Implements `Stable-RouteNet_v3_1_Architecture_Document.md`.
 
-**Central hypothesis:** detectors overfit to unstable manipulation/domain shortcuts; stable,
-reliable localized evidence routed through specialized sparse experts generalizes better.
+## Current Status
 
-**Core formula:**
+**Iteration 1 (i1) — Stable-RouteNet v4: FAIL**
 
-\[
-W_i = (M_i \cdot S_i \cdot R_i)^{\alpha}, \quad 0.2 \leq \alpha \leq 0.8, \quad \alpha_0 = \tfrac13
-\]
-
-where \(R_i = \sqrt{A_i \cdot C_i}\) is derived from expert-correction agreement \(A_i\) and
-intervention consistency \(C_i\) — **no free neural reliability head**.
-
-## Contents
-
-| File | Purpose |
+| Metric | Value |
 |---|---|
-| `Stable-RouteNet_v3_1_Architecture_Document.md` | **Authoritative v3.1 architecture & research specification** |
-| `Stable-RouteNet_v3_1_5epoch_2xT4_CUDA_CONTEXT_FIXED_FINAL.ipynb` | 5-epoch confirmation run notebook (2x T4) |
-| `Stable-RouteNet_Q1_Focused_Build_Specification_v5.md` | Full Q1 build specification (20-epoch, ablations) |
-| `_build_nb.py` | Builder that generates the Q1 notebook from source (re-run to rebuild) |
-| `data/` | FF++, Celeb-DF-v2, DFDCP (preprocessed frames + landmarks) |
+| Train AUC | 1.000 |
+| Worst eval AUC | 0.578 |
+| Mean eval AUC | 0.596 |
+| Clean eval AUC | 0.602 |
+| Localization pixel AUC | 0.938 |
 
-## Quick start (Kaggle)
+The model overfits strongly. Train AUC is perfect but evaluation AUC is near chance. Localization works well, but the primary detection task fails. Routing is imbalanced (1 dead expert).
 
-1. Upload `data/` as private dataset `Stable-RouteNet-1`; attach to notebook (T4 x2, internet on).
-2. Run all — preflight must print `ALL V3 PRE-FLIGHT SMOKE TESTS PASSED`.
-3. Training: 5 epochs, AdamW, 4 experts top-2 sparse, `T=8`, frozen DINOv2-L/14 with registers.
-4. Final cell evaluates **once** on DFDCP 100-video screening (50 real + 50 fake, no leakage).
+See `record/i1-Stable-RouteNet-v4-Fail.md` for full analysis and next steps.
 
-Train: FF++ (150) + Celeb-DF-v2 (150) reals via DD-SBI (50/50 real/fake) · Val: 25+25 · Test: DFDCP screening.
+## Repository Layout
 
-## Architecture (v3.1)
+```
+architecture/          Architecture specifications
+  i1-Stable-RouteNet-v4.md
 
-`M` = local manipulation evidence, `S` = intervention stability, `A` = expert-correction agreement,
-`C` = intervention consistency, `R = sqrt(A*C)`, `W = (M*S*R)^alpha`.
-See the architecture document for the full specification, loss contract, curriculum, and evaluation protocol.
+notebook/              Kaggle training notebooks
+  i1-Stable-RouteNet-v4.ipynb
+
+record/                Experiment results (Pass/Fail)
+  i1-Stable-RouteNet-v4-Fail.md
+  rules.md             Record format rules
+
+_build_nb.py           Notebook builder script
+Stable-RouteNet_v4_notebook.ipynb   Source notebook
+Stable-RouteNet_v4.docx            Reference document
+```
+
+## What This Project Does
+
+Builds a deepfake detector that generalizes to unseen datasets and manipulation methods by:
+
+1. **Sparse expert routing** — specialist experts focus on different forensic evidence types
+2. **Prototype-based routing** — routes by forensic content, not domain shortcuts
+3. **Shared safety-net expert** — always processes all patches to prevent knowledge loss
+4. **Trust scoring** — M (manipulation) x S (stability) x R (reliability) weights evidence
+5. **Two-view training** — original + degraded views learn which evidence is stable
+
+## Next Steps (from i1 failure)
+
+1. Compare image-level pooling with localization pooling
+2. Test whether synthetic SBI artifacts differ from real manipulation evidence
+3. Use a separate calibration split and validate one global threshold
+4. Add routing-balance constraints or improve expert initialization
+5. Run ablations for frequency expert, LoRA, trust weighting, and CRO loss
+6. Evaluate on real manipulated videos separately from synthetic localization
+
+## Quick Start (Kaggle)
+
+1. Upload `data/` as private dataset; attach to notebook (T4 x2, internet on)
+2. Run all — preflight must print `ALL V3 PRE-FLIGHT SMOKE TESTS PASSED`
+3. Training: 5 epochs, AdamW, 4 experts top-2 sparse, T=8
+4. Final cell evaluates on DFDCP screening
