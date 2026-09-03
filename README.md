@@ -1,46 +1,41 @@
-# RL-ROI-Net v2
+# Stable-RouteNet — v3.1 Architecture (Kaggle 2xT4)
 
-RL-ROI-Net is a local video evidence-review tool for deepfake analysis. The deployed path uses a frozen `honi05` EfficientNet-B4 backbone with a head-only classifier and region-localization head. A separate `train.py` path without `--verdict` trains the configured ImageNet EfficientNet-B4 path with its configured frozen blocks; that path is not the deployed checkpoint. The result is deliberately three-way: **REAL**, **FAKE**, or **REVIEW**. REVIEW means a person must assess the clip; no result is proof of authenticity or manipulation.
+Evidence-stability-conditioned sparse expert routing for generalizable deepfake detection.
+Implements `Stable-RouteNet_v3_1_Architecture_Document.md`.
 
-## Run the local service on Windows
+**Central hypothesis:** detectors overfit to unstable manipulation/domain shortcuts; stable,
+reliable localized evidence routed through specialized sparse experts generalizes better.
 
-1. Start Docker Desktop with NVIDIA GPU support enabled.
-2. Double-click **`start.bat`** in the repository root.
-3. It rebuilds/starts the `api` service with `outputs/checkpoints/best.pt`, waits for `/health`, then opens `http://localhost:8000/demo.html`.
+**Core formula:**
 
-The launcher fails clearly if Docker Compose, CUDA support, or `outputs/checkpoints/best.pt` is unavailable. To stop the service:
+\[
+W_i = (M_i \cdot S_i \cdot R_i)^{\alpha}, \quad 0.2 \leq \alpha \leq 0.8, \quad \alpha_0 = \tfrac13
+\]
 
-```text
-docker compose stop api
-```
+where \(R_i = \sqrt{A_i \cdot C_i}\) is derived from expert-correction agreement \(A_i\) and
+intervention consistency \(C_i\) — **no free neural reliability head**.
 
-## Local review workflow
+## Contents
 
-- Upload one authorized video, up to **30 seconds** and **250 MiB**.
-- The service uniformly samples 32 frames, computes a robust video score, and returns a REAL / FAKE / REVIEW outcome.
-- The UI displays ROI boxes for sampled-frame localization evidence, supports cancellation, downloads a local JSON report, and can delete the generated video/evidence bundle immediately.
-- Review bundles otherwise expire after 24 hours. The local API accepts one analysis at a time to protect the GPU.
+| File | Purpose |
+|---|---|
+| `Stable-RouteNet_v3_1_Architecture_Document.md` | **Authoritative v3.1 architecture & research specification** |
+| `Stable-RouteNet_v3_1_5epoch_2xT4_CUDA_CONTEXT_FIXED_FINAL.ipynb` | 5-epoch confirmation run notebook (2x T4) |
+| `Stable-RouteNet_Q1_Focused_Build_Specification_v5.md` | Full Q1 build specification (20-epoch, ablations) |
+| `_build_nb.py` | Builder that generates the Q1 notebook from source (re-run to rebuild) |
+| `data/` | FF++, Celeb-DF-v2, DFDCP (preprocessed frames + landmarks) |
 
-The API runs at `http://localhost:8000`; `GET /health` reports checkpoint/CUDA readiness, `POST /analyze` powers the UI, and `DELETE /uploads/{request_id}` deletes an analysis bundle.
+## Quick start (Kaggle)
 
-## Model and evidence boundary
+1. Upload `data/` as private dataset `Stable-RouteNet-1`; attach to notebook (T4 x2, internet on).
+2. Run all — preflight must print `ALL V3 PRE-FLIGHT SMOKE TESTS PASSED`.
+3. Training: 5 epochs, AdamW, 4 experts top-2 sparse, `T=8`, frozen DINOv2-L/14 with registers.
+4. Final cell evaluates **once** on DFDCP 100-video screening (50 real + 50 fake, no leakage).
 
-The production runtime is explicitly configured to use:
+Train: FF++ (150) + Celeb-DF-v2 (150) reals via DD-SBI (50/50 real/fake) · Val: 25+25 · Test: DFDCP screening.
 
-```text
-outputs/checkpoints/best.pt
-```
+## Architecture (v3.1)
 
-FF++ held-out-video measurements are retained in `outputs/eval_generalization.json` and `outputs/eval_report.json`. The latest same-FF++ continuation is retained separately with its reports under `outputs/checkpoints/diverse_all4_alpha60_continuation/`; it was **not promoted** because its comparable evidence did not justify replacing the production checkpoint.
-
-The model has no current external-dataset evaluation because raw Celeb-DF is unavailable. Treat this as a local review assistant only: retain REVIEW outcomes for human assessment, and do not use an output as the sole basis for moderation, legal, safety, or identity decisions.
-
-## Development
-
-```text
-docker compose build
-docker compose run --rm tests
-docker compose run --rm evaluate
-```
-
-The project uses frozen-backbone, head-only training with Focal classification and Dice/BCE mask supervision. Dataset inputs remain under `data/`; model weights remain under `outputs/models/`. Historical non-production experiments, failed run folders, caches, and stale reports were removed during the current cleanup.
+`M` = local manipulation evidence, `S` = intervention stability, `A` = expert-correction agreement,
+`C` = intervention consistency, `R = sqrt(A*C)`, `W = (M*S*R)^alpha`.
+See the architecture document for the full specification, loss contract, curriculum, and evaluation protocol.
