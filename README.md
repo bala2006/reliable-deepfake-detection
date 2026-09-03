@@ -1,63 +1,76 @@
 # Reliable Deepfake Detection
 
-Evidence-stability-conditioned sparse expert routing for generalizable deepfake detection.
+A structured research project for building generalizable deepfake detectors using sparse expert routing and evidence-stability conditioning.
 
-## Current Status
+## Status
 
-**Iteration 1 (i1) — Stable-RouteNet v4: FAIL**
+| Iteration | Architecture | Result | Worst AUC | Notes |
+|-----------|-------------|--------|-----------|-------|
+| i1 | Stable-RouteNet v4 | **FAIL** | 0.578 | Strong localization (0.938 pixel AUC), weak detection. Overfits: train 1.000 vs eval 0.578. 1 dead expert. |
 
-| Metric | Value |
-|---|---|
-| Train AUC | 1.000 |
-| Worst eval AUC | 0.578 |
-| Mean eval AUC | 0.596 |
-| Clean eval AUC | 0.602 |
-| Localization pixel AUC | 0.938 |
-
-The model overfits strongly. Train AUC is perfect but evaluation AUC is near chance. Localization works well, but the primary detection task fails. Routing is imbalanced (1 dead expert).
-
-See `record/i1-Stable-RouteNet-v4-Fail.md` for full analysis and next steps.
-
-## Repository Layout
+## Project Structure
 
 ```
-architecture/          Architecture specifications
+architecture/              Design specifications per iteration
   i1-Stable-RouteNet-v4.md
+  rules.md
 
-notebook/              Kaggle training notebooks
+notebook/                  Executable training notebooks
   i1-Stable-RouteNet-v4.ipynb
+  rules.md
 
-record/                Experiment results (Pass/Fail)
+docs/                      Reference documents
+  i1-Stable-RouteNet-v4.docx
+  rules.md
+
+record/                    Experiment results (Pass/Fail)
   i1-Stable-RouteNet-v4-Fail.md
-  rules.md             Record format rules
+  rules.md
 
-_build_nb.py           Notebook builder script
-Stable-RouteNet_v4_notebook.ipynb   Source notebook
-Stable-RouteNet_v4.docx            Reference document
+temp/                      Build utilities
+  _build_nb.py
 ```
 
-## What This Project Does
+## Iteration Convention
 
-Builds a deepfake detector that generalizes to unseen datasets and manipulation methods by:
+All artifacts for one experiment share the same identity `iN-Architecture-Name-vVersion`:
 
-1. **Sparse expert routing** — specialist experts focus on different forensic evidence types
-2. **Prototype-based routing** — routes by forensic content, not domain shortcuts
-3. **Shared safety-net expert** — always processes all patches to prevent knowledge loss
-4. **Trust scoring** — M (manipulation) x S (stability) x R (reliability) weights evidence
-5. **Two-view training** — original + degraded views learn which evidence is stable
+| Folder | File |
+|--------|------|
+| `architecture/` | `i1-Stable-RouteNet-v4.md` |
+| `notebook/` | `i1-Stable-RouteNet-v4.ipynb` |
+| `docs/` | `i1-Stable-RouteNet-v4.docx` |
+| `record/` | `i1-Stable-RouteNet-v4-Fail.md` |
 
-## Next Steps (from i1 failure)
+New iterations create new `iN` files. Old iterations are never overwritten.
+
+## Core Idea
+
+Detectors overfit to unstable manipulation shortcuts. This project routes stable, reliable localized evidence through specialized sparse experts to improve generalization.
+
+**Key components:**
+- **Sparse expert routing** — 4 specialist experts + 1 shared expert + 1 frequency expert
+- **Prototype-based router** — routes by forensic content, not domain
+- **Trust scoring** — M (manipulation) x S (stability) x R (reliability)
+- **Two-view training** — original + degraded views learn which evidence survives quality changes
+- **5-phase curriculum** — gradual introduction of objectives
+
+## i1 Failure Analysis
+
+The i1 run (Stable-RouteNet v4, 5 epochs, 2x T4) failed the primary detection task:
+
+- Train AUC reached 1.000 but worst evaluation AUC was only 0.578
+- Localization was strong (pixel AUC 0.938, IoU 0.600)
+- Routing was imbalanced — 1 expert received 51.8% of patches, 1 was dead
+- Default threshold classified all clean examples as real
+
+See `record/i1-Stable-RouteNet-v4-Fail.md` for detailed findings and next steps.
+
+## Next Steps
 
 1. Compare image-level pooling with localization pooling
-2. Test whether synthetic SBI artifacts differ from real manipulation evidence
-3. Use a separate calibration split and validate one global threshold
+2. Test whether SBI artifacts differ from real manipulation evidence
+3. Validate a global threshold on a separate calibration split
 4. Add routing-balance constraints or improve expert initialization
-5. Run ablations for frequency expert, LoRA, trust weighting, and CRO loss
-6. Evaluate on real manipulated videos separately from synthetic localization
-
-## Quick Start (Kaggle)
-
-1. Upload `data/` as private dataset; attach to notebook (T4 x2, internet on)
-2. Run all — preflight must print `ALL V3 PRE-FLIGHT SMOKE TESTS PASSED`
-3. Training: 5 epochs, AdamW, 4 experts top-2 sparse, T=8
-4. Final cell evaluates on DFDCP screening
+5. Ablate frequency expert, LoRA, trust weighting, and CRO loss
+6. Evaluate on real manipulated videos separately from synthetic data
